@@ -5,6 +5,7 @@ const baseUrl = "https://api.openweathermap.org/data/2.5";
 const country = document.getElementById("top1");
 const detailContainer = document.getElementById("bottom");
 const map = document.getElementById("maps");
+const currentLocation = document.querySelector(".current-location");
 
 // updating map according to lat and long
 function iframeUpdate(latitude,longitude){
@@ -12,7 +13,7 @@ function iframeUpdate(latitude,longitude){
     ele.className = "map";
 
     ele.src = `https://maps.google.com/maps?q=${latitude}, ${longitude}&z=15&output=embed`;
-    ele.width = 900;
+    ele.width = 800;
     ele.height = 370;
     ele.frameBorder = 0;
     ele.style.border = 0;
@@ -94,7 +95,7 @@ function renderIntopUI(data){
 function renderInBottomUI(data){
     const ele2 = document.createElement("div");
     ele2.className = "details";
-
+    currentLocation.textContent=`Your current Location is ${data.name}`;
     ele2.innerHTML = `
     <h5>Location: ${data.name}</h5>
     <h5>Wind Speed: ${data.wind.speed} kmph</h5>
